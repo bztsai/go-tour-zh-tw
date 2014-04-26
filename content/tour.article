@@ -19,393 +19,392 @@ http://golang.org
 
 * Hello, 世界
 
-Welcome to a tour of the [[http://golang.org/][Go programming language]].
+歡迎來到[[http://golang.org/][Go程式語言]]指南。
 
-The tour is divided into three sections: basic concepts, methods and interfaces, and concurrency.
+該指南被分為三部分：基礎概念、方法和介面，以及並行。
 
-Throughout the tour you will find a series of exercises for you to complete.
+在指南後有一系列的練習題讓讀者完成。
 
-The tour is interactive. Click the Run button now (or type Shift-Enter) to compile and run the program on
-#appengine: a remote server.
-your computer.
-The result is displayed below the code.
+該指南可以進行交互。點擊「運行」按鈕（或按 Shift + Enter）可以在
+#appengine: 遠程服務器上
+你的電腦上
+編譯並執行程式。
+結果展示在原始碼的下面。
 
-These example programs demonstrate different aspects of Go. The programs in the tour are meant to be starting points for your own experimentation.
+這些例子程式展示了Go的各個方面。在指南中的程式可以成為你積累經驗的開始。
 
-Edit the program and run it again.
+請編輯程式並且再次執行它。
 
-When you're ready to move on, click the right arrow down below or type the PageDown key.
-You can also navigate using the menu under the "Go" flag at the top of the page.
+當你準備好而想繼續到下一個題目，可點擊右下的「向后」按鈕或按 PageDown 鍵。
+也可以使用頁面頂端「Go」標志下面的菜單進行導航。
 
 .play prog/tour/hello.go
 
-* Go local
+* Go本地化
 
-The tour is available in other languages:
+該指南也有其他語言版本：
 
-- [[http://go-tour-br.appspot.com/][Brazilian Portuguese — Português do Brasil]]
-- [[http://go-tour-ca.appspot.com/][Catalan — Català]]
-- [[http://go-tour-es.appspot.com/][Spanish — Español]]
-- [[http://go-tour-fr.appspot.com/][French - Français]]
-- [[http://go-tour-he.appspot.com/][Hebrew — עִבְרִית]]
-- [[http://go-tour-jp.appspot.com/][Japanese — 日本語]]
-- [[http://go-tour-kr.appspot.com/][Korean — 한국어]]
-- [[http://go-tour-ro.appspot.com/][Romanian - Română]]
-- [[http://tur.golang.org.tr/][Turkish - Türkçe]]
-- [[http://go-tour-zh.appspot.com/][Chinese — 简体中文]]
+- [[http://go-tour.appspot.com/][英語 — English]]
+- [[http://go-tour-br.appspot.com/][巴西葡萄牙語 — Português do Brasil]]
+- [[http://go-tour-ca.appspot.com/][加泰隆語 — Català]]
+- [[http://go-tour-es.appspot.com/][西班牙語 — Español]]
+- [[http://go-tour-fr.appspot.com/][法語 — Français]]
+- [[http://go-tour-he.appspot.com/][希伯來語 — עִבְרִית]]
+- [[http://go-tour-jp.appspot.com/][日語 — 日本語]]
+- [[http://go-tour-kr.appspot.com/][朝鮮語 — 한국어]]
+- [[http://go-tour-ro.appspot.com/][羅馬尼亞語 — Română]]
+- [[http://tur.golang.org.tr/][土耳其語 — Türkçe]]
+- [[http://go-tour-zh.appspot.com/][中文(簡體) — 普通話]]
 
-Click the "next" button or type PageDown to continue.
+點擊[[javascript:highlightAndClick(".next-page")][「下一頁」]]按鈕或者按 `PageDown` 鍵繼續。
 
 #appengine: * The Go Playground
 #appengine: 
-#appengine: This tour is built atop the [[http://play.golang.org/][Go Playground]], a
-#appengine: web service that runs on [[http://golang.org/][golang.org]]'s servers.
+#appengine: 這個指南構建在 [[http://play.golang.org/][Go Playground]] 之上，這是一個運行在
+#appengine: [[http://golang.org/][golang.org]] 的服務器上的一個 Web 服務。
 #appengine: 
-#appengine: The service receives a Go program, compiles, links, and runs the program inside
-#appengine: a sandbox, then returns the output.
+#appengine: 服務接收 Go 程式的輸入，且在沙盒裡編譯、鏈接和運行，
+#appengine: 然後返回輸出。
 #appengine: 
-#appengine: There are limitations to the programs that can be run in the playground:
+#appengine: 對於在 Playground 運行的程式的限制是：
 #appengine: 
-#appengine: - The only communication a playground program has to the outside world is by writing to standard output and standard error.
-#appengine: - In the playground the time begins at 2009-11-10 23:00:00 UTC (determining the significance of this date is an exercise for the reader). This makes it easier to cache programs by giving them deterministic output.
-#appengine: - There are also limits on execution time and on CPU and memory usage, and the program is restricted to running in a single thread (but may use many goroutines).
-#appengine:
-#appengine: The playground uses the latest stable release of Go.
+#appengine: - 在Playground中的程式與外部唯一的通訊方式是使用標準輸出和標準錯誤輸出。
+#appengine: - 在Playground中，時間從2009-11-10 23:00:00 UTC（了解這個日期的重要含義是留給讀者的練習）。這使得根據可預見的輸出來緩存程式變得容易。
+#appengine: - 對於運行時間、CPU 和記憶體的使用同樣也有限制，並且程式是限制單一線程運行（但是可以使用大量 goroutine）。
 #appengine: 
-#appengine: Read "[[http://blog.golang.org/playground][Inside the Go Playground]]" to learn more.
+#appengine: Playground 使用最新發布的 Go 的穩定版本。
+#appengine: 
+#appengine: 可參閱「[[http://blog.golang.org/playground][Go Playground 的內部原指令(英文)]]」了解更多信息。
 #appengine: 
 #appengine: .play prog/tour/sandbox.go
 
 * Packages
 
-Every Go program is made up of packages.
+每個 Go 程式都是由包組成的。
 
-Programs start running in package `main`.
+程式運行的入口是包 `main` 。
 
-This program is using the packages with import paths `"fmt"` and `"math/rand"`.
+這個程式使用並導入了包 `"fmt"` 和 `"math/rand"` 。
 
-By convention, the package name is the same as the last element of the import path. For instance, the `"math/rand"` package comprises files that begin with the statement `package`rand`.
+按照慣例，包名與導入路徑的最後一個目錄一致。例如， `"math/rand"` 包由 `package`rand` 語句開始。
 
-#appengine: *Note:* the environment in which these programs are executed is
-#appengine: deterministic, so `rand.Intn` will always return the same number.
-#appengine: 
-#appengine: (To see a different number, seed the number generator; see [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]].)
+#appengine: *注意：* 這個程式的運行環境是固定的，因此
+#appengine: `rand.Intn` 總是會返回相同的數字。
+#appengine:
+#appengine: （為了得到不同的數字，需要生成不同的種子數，參閱 [[http://golang.org/pkg/math/rand/#Seed][`rand.Seed`]]。）
 
 .play prog/tour/packages.go
 
-* Imports
+* 導入
 
-This code groups the imports into a parenthesized, "factored" import statement. You can also write multiple import statements, like:
+這個原始碼用圓括號組合了導入，這是「factored」導入語句。同樣可以編寫多個導入語句，例如：
 
-	import "fmt"
-	import "math"
+    import "fmt"
+    import "math"
 
 .play prog/tour/imports.go
 
-* Exported names
+* 導出名
 
-After importing a package, you can refer to the names it exports.
+在導入了一個包之後，就可以用其導出的名稱來調用它。
 
-In Go, a name is exported if it begins with a capital letter.
+在 Go 中，首字母大寫的名稱是被導出的。
 
-`Foo` is an exported name, as is `FOO`. The name `foo` is not exported.
+`Foo` 和 `FOO` 都是被導出的名稱。名稱 `foo` 是不會被導出的。
 
-Run the code. Then rename `math.pi` to `math.Pi` and try it again.
+執行原始碼。然後將 `math.pi` 改名為 `math.Pi` 再試著執行一下。
 
 .play prog/tour/exported-names.go
 
-* Functions
+* 函式
 
-A function can take zero or more arguments.
+函式可以沒有參數或接受多個參數。
+        
+在這個例子中， `add` 接受兩個 `int` 類型的參數。
+    
+注意類型在變數名 _之後_ 。
 
-In this example, `add` takes two parameters of type `int`.
-
-Notice that the type comes _after_ the variable name.
-
-(For more about why types look the way they do, see the [[http://golang.org/doc/articles/gos_declaration_syntax.html][article on Go's declaration syntax]].)
+（參考 [[http://golang.org/doc/articles/gos_declaration_syntax.html][這篇關於 Go 語法定義的文章]]了解類型以這種形式出現的原因。）
 
 .play prog/tour/functions.go
 
-* Functions continued
+* 函式（續）
+        
+當兩個或多個連續的函式命名參數是同一類型，則除了最後一個類型之外，其他都可以省略。
+        
+在這個例子中 ，
 
-When two or more consecutive named function parameters share a type, you can omit the type from all but the last.
+    x int, y int
 
-In this example, we shortened
+被縮寫為
 
-	x int, y int
-
-to
-
-	x, y int
+    x, y int
 
 .play prog/tour/functions-continued.go
 
-* Multiple results
+* 多值返回
 
-A function can return any number of results.
+函式可以返回任意數量的返回值。
 
-This function returns two strings.
+這個函式返回了兩個字符串。
 
 .play prog/tour/multiple-results.go
 
-* Named results
+* 命名返回值
 
-Functions take parameters. In Go, functions can return multiple "result parameters", not just a single value. They can be named and act just like variables.
+函式接受參數。在 Go 中，函式可以返回多個「結果參數」，而不僅僅是一個值。它們可以像變數那樣命名和使用。
 
-If the result parameters are named, a `return` statement without arguments returns the current values of the results.
+如果命名了返回值參數，一個沒有參數的 `return` 語句，會將當前的值作為返回值返回。
 
 .play prog/tour/named-results.go
 
-* Variables
-
-The `var` statement declares a list of variables; as in function argument lists, the type is last.
+* 變數
+        
+`var` 語句定義了一個變數的列表；跟函式的參數列表一樣，類型在後面。
 
 .play prog/tour/variables.go
 
-* Variables with initializers
+* 初始化變數
 
-A var declaration can include initializers, one per variable.
+變數定義可以包含初始值，每個變數對應一個。
 
-If an initializer is present, the type can be omitted; the variable will take the type of the initializer.
+如果初始化是使用表達式，則可以省略類型；變數從初始值中獲得類型。
 
 .play prog/tour/variables-with-initializers.go
 
-* Short variable declarations
+* 短聲明變數
 
-Inside a function, the `:=` short assignment statement can be used in place of a `var` declaration with implicit type.
+在函式中， `:=` 簡潔賦值語句在明確類型的地方，可以用於替代 `var` 定義。
 
-Outside a function, every construct begins with a keyword (`var`, `func`, and so on) and the `:=` construct is not available.
+函式外的每個語法塊都必須以關鍵字開始（ `var` 、 `func` 、等等）， `:=` 結構不能使用在函式外。
 
 .play prog/tour/short-variable-declarations.go
 
-* Basic types
+* 基本類型
 
-Go's basic types are
+Go的基本類型有basic types
 
-	bool
-	
-	string
-	
-	int  int8  int16  int32  int64
-	uint uint8 uint16 uint32 uint64 uintptr
-	
-	byte // alias for uint8
-	
-	rune // alias for int32
-	     // represents a Unicode code point
-	
-	float32 float64
-	
-	complex64 complex128
+    bool
+
+    string
+
+    int  int8  int16  int32  int64
+    uint uint8 uint16 uint32 uint64 uintptr
+
+    byte // uint8 的別名
+
+    rune // int32 的別名
+         // 代表一個Unicode碼
+
+    float32 float64
+
+    complex64 complex128
 
 .play prog/tour/basic-types.go
 
-* Type conversions
+* 類型轉換
 
-The expression `T(v)` converts the value `v` to the type `T`.
+表達式 `T(v)` 將值 `v` 轉換為類型 `T` 。
 
-Some numeric conversions:
+一些關於數值的轉換：
 
 	var i int = 42
 	var f float64 = float64(i)
 	var u uint = uint(f)
 
-Or, put more simply:
+或者，更加簡單的形式：
 
 	i := 42
 	f := float64(i)
 	u := uint(f)
 
-Unlike in C, in Go assignment between items of different type requires an
-explicit conversion.
-Try removing the `float64` or `int` conversions in the example and see what happens.
+與 C 不同的是 Go 的在不同類型之間的項目賦值時需要顯式轉換。
+試著移除例子中 `float64` 或 `int` 的轉換看看會發生什麼。
 
 .play prog/tour/type-conversions.go
 
-* Constants
+* 常數
 
-Constants are declared like variables, but with the `const` keyword.
+常數的定義與變數類似，只不過使用 `const` 關鍵字。
 
-Constants can be character, string, boolean, or numeric values.
+常數可以是字符、字符串、布爾或數字類型的值。
 
-Constants cannot be declared using the `:=` syntax.
+常數不能使用 `:=` 語法定義。
 
 .play prog/tour/constants.go
 
-* Numeric Constants
+* 數值常數
 
-Numeric constants are high-precision _values_.
+數值常數是高精度的 _值_ 。
 
-An untyped constant takes the type needed by its context.
+一個未指定類型的常數由上下文來決定其類型。
 
-Try printing `needInt(Big)` too.
+也嘗試一下輸出 `needInt(Big)` 吧。
 
 .play prog/tour/numeric-constants.go
 
-* For
+* for
 
-Go has only one looping construct, the `for` loop.
+Go只有一種循環結構： `for` 循環。
 
-The basic `for` loop looks as it does in C or Java, except that the `(`)` are gone (they are not even optional) and the `{`}` are required.
+基本的 `for` 循環除了沒有 `(`)` 之外（甚至強制不能使用它們），看起來跟 C 或者 Java 中做的一樣，而 `{`}` 是必須的。
 
 .play prog/tour/for.go
 
-* For continued
-
-As in C or Java, you can leave the pre and post statements empty.
+* for（續）
+        
+跟 C 或者 Java 中一樣，可以讓前置、後置語句為空。
 
 .play prog/tour/for-continued.go
 
-* For is Go's "while"
-
-At that point you can drop the semicolons: C's `while` is spelled `for` in Go.
+* for是Go的「while」
+        
+基於此可以省略分號：C 的 `while` 在 Go 中叫做 `for` 。
 
 .play prog/tour/for-is-gos-while.go
 
-* Forever
+* 無窮迴圈
 
-If you omit the loop condition it loops forever, so an infinite loop is compactly expressed.
+如果省略了循環條件，循環就不會結束，因此可以用更簡潔地形式表達無窮迴圈。
 
 .play prog/tour/forever.go
 
-* If
+* if
 
-The `if` statement looks as it does in C or Java, except that the `(`)` are gone and the `{`}` are required.
-
-(Sound familiar?)
+`if` 語句除了沒有 `(`)` 之外（甚至強制不能使用它們），看起來跟 C 或者 Java 中的一樣，而 `{`}` 是必須的。
+        
+（耳熟嗎？）
 
 .play prog/tour/if.go
 
-* If with a short statement
+* if 的便捷語句
 
-Like `for`, the `if` statement can start with a short statement to execute before the condition.
+跟 `for` 一樣， `if` 語句可以在條件之前執行一個簡單的語句。
 
-Variables declared by the statement are only in scope until the end of the `if`.
+由這個語句定義的變數的作用域僅在 `if` 範圍之內。
 
-(Try using `v` in the last `return` statement.)
+（在最後的 `return` 語句處使用 `v` 看看。）
 
 .play prog/tour/if-with-a-short-statement.go
 
-* If and else
+* if 和 else
 
-Variables declared inside an `if` short statement are also available inside any of the `else` blocks.
+在 `if` 的便捷語句定義的變數同樣可以在任何對應的 `else` 塊中使用。
 
 .play prog/tour/if-and-else.go
 
-* Exercise: Loops and Functions
+* 練習：循環和函式
 
-As a simple way to play with functions and loops, implement the square root function using Newton's method.
+作為練習函式和循環的簡單途徑，用牛頓法實現開方函式。
 
-In this case, Newton's method is to approximate `Sqrt(x)` by picking a starting point _z_ and then repeating:
+在這個例子中，牛頓法是通過選擇一個初始點 _z_ 然後重複這一過程求 `Sqrt(x)` 的近似值：
 
 .image static/newton.png
 
-To begin with, just repeat that calculation 10 times and see how close you get to the answer for various values (1, 2, 3, ...).
+為了做到這個，只需要重複計算 10 次，並且觀察不同的值（1，2，3，……）是如何逐步逼近結果的。
+   然後，修改循環條件，使得當值停止改變（或改變非常小）的時候退出循環。觀察迭代次數是否變化。結果與 [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]] 接近嗎？
 
-Next, change the loop condition to stop once the value has stopped changing (or only changes by a very small delta). See if that's more or fewer iterations. How close are you to the [[http://golang.org/pkg/math/#Sqrt][math.Sqrt]]?
+提示：定義並初始化一個浮點值，向其提供一個浮點語法或使用轉換：
 
-Hint: to declare and initialize a floating point value, give it floating point syntax or use a conversion:
-
-	z := float64(1)
-	z := 1.0
+    z := float64(1)
+    z := 1.0
 
 .play prog/tour/exercise-loops-and-functions.go
 
-* Structs
+* 結構體
 
-A `struct` is a collection of fields.
+一個結構體（ `struct` ）就是一個字段的集合。
 
-(And a `type` declaration does what you'd expect.)
+（而 `type` 的含義跟其字面意思相符。）
 
 .play prog/tour/structs.go
 
-* Struct Fields
+* 結構體字段
 
-Struct fields are accessed using a dot.
+結構體字段使用點號來訪問。
 
 .play prog/tour/struct-fields.go
 
-* Pointers
+* 指針
 
-Go has pointers, but no pointer arithmetic.
+Go有指針，但是沒有指針運算。
 
-Struct fields can be accessed through a struct pointer. The indirection through the pointer is transparent.
+結構體字段可以通過結構體指針來訪問。通過指針間接的訪問是透明的。
 
 .play prog/tour/pointers.go
 
-* Struct Literals
+* 結構體文法
 
-A struct literal denotes a newly allocated struct value by listing the values of its fields.
+結構體文法表示通過結構體字段的值作為列表來新分配一個結構體。
 
-You can list just a subset of fields by using the `Name:` syntax. (And the order of named fields is irrelevant.)
+使用 `Name:` 語法可以僅列出部分字段。（字段名的順序無關。）
 
-The special prefix `&` constructs a pointer to a newly allocated struct.
+特殊的前綴 `&` 構造了指向結構體的指針。
 
 .play prog/tour/struct-literals.go
 
-* The new function
+* new 函式
 
-The expression `new(T)` allocates a zeroed `T` value and returns a pointer to it.
+表達式 `new(T)` 分配了一個零初始化的 `T` 值，並返回指向它的指針。
 
-	var t *T = new(T)
+    var t *T = new(T)
 
-or
+或
 
 	t := new(T)
 
 .play prog/tour/the-new-function.go
 
-* Arrays
+* 陣列
 
-The type `[n]T` is an array of `n` values of type `T`.
+類型 `[n]T` 是一個有 `n` 個類型為 `T` 的值的陣列。
 
-The expression
+表達式
 
 	var a [10]int
 
-declares a variable `a` as an array of ten integers.
+定義變數 `a` 是一個有十個整數的陣列。
 
-An array's length is part of its type, so arrays cannot be resized.
-This seems limiting, but don't worry;
-Go provides a convenient way of working with arrays.
+陣列的長度是其類型的一部分，因此陣列不能改變大小。
+這看起來是一個制約，但是請不要擔心；Go 提供了更加便利的方式來使用陣列。
 
 .play prog/tour/array.go
 
-* Slices
+* slice
+        
+一個 slice 會指向一個陣列，並且包含了長度信息。
 
-A slice points to an array of values and also includes a length.
-
-`[]T` is a slice with elements of type `T`.
+`[]T` 是一個元素類型為 `T` 的 slice。
 
 .play prog/tour/slices.go
 
-* Slicing slices
+* 對 slice 切片
 
-Slices can be re-sliced, creating a new slice value that points to the same array.
+slice 可以重新切片，創建一個新的 slice 值指向相同的陣列。
 
-The expression
+表達式
 
-	s[lo:hi]
+    s[lo:hi]
+        
+表示從 `lo` 到 `hi-1` 的 slice 元素，含兩端。因此
 
-evaluates to a slice of the elements from `lo` through `hi-1`, inclusive. Thus
+    s[lo:lo]
 
-	s[lo:lo]
+是空的，而
 
-is empty and
+    s[lo:lo+1]
 
-	s[lo:lo+1]
-
-has one element.
+有一個元素。
 
 .play prog/tour/slicing-slices.go
 
-* Making slices
+* 構造 slice
 
-Slices are created with the `make` function. It works by allocating a zeroed array and returning a slice that refers to that array:
+slice 由函式 `make` 創建。這會分配一個零長度的陣列並且返回一個 slice 指向這個陣列：
 
-	a := make([]int, 5)  // len(a)=5
+    a := make([]int, 5)  // len(a)=5
 
-To specify a capacity, pass a third argument to `make`:
+為了指定容量，可傳遞第三個參數到 `make` ：
 
 	b := make([]int, 0, 5) // len(b)=0, cap(b)=5
 
@@ -414,513 +413,503 @@ To specify a capacity, pass a third argument to `make`:
 
 .play prog/tour/making-slices.go
 
-* Nil slices
+* 空 slice
 
-The zero value of a slice is `nil`.
+slice 的零值是 `nil` 。
 
-A nil slice has a length and capacity of 0.
+一個 nil 的 slice 的長度和容量是 0。
 
-(To learn more about slices, read the [[http://golang.org/doc/articles/slices_usage_and_internals.html][Slices: usage and internals]] article.)
+（了解更多關於 slice 的內容，參閱文章[[http://golang.org/doc/articles/slices_usage_and_internals.html][slice：使用和內幕]]。）
 
 .play prog/tour/nil-slices.go
 
-* Range
+* range
 
-The `range` form of the `for` loop iterates over a slice or map.
+`for` 循環的 `range` 格式可以對 slice 或者 map 進行迭代循環。
 
 .play prog/tour/range.go
 
-* Range continued
+* range（續）
 
-You can skip the index or value by assigning to `_`.
+可以將值賦值給 `_` 來忽略序號和值。
 
-If you only want the index, drop the ", value" entirely.
+如果只需要索引值，去掉「, value」的部分即可。
 
 .play prog/tour/range-continued.go
 
-* Exercise: Slices
+* 練習：slice
 
-Implement `Pic`. It should return a slice of length `dy`, each element of which is a slice of `dx` 8-bit unsigned integers. When you run the program, it will display your picture, interpreting the integers as grayscale (well, bluescale) values.
+實現 `Pic` 。它返回一個 slice 的長度 `dy` ，和 slice 中每個元素的長度的 8 位無符號整數 `dx` 。當執行這個程序，它會將整數轉換為灰度（好吧，藍度）圖片進行展示。
 
-The choice of image is up to you. Interesting functions include `x^y`, `(x+y)/2`, and `x*y`.
+圖片的實現已經完成。可能用到的函式包括 `>x^y` ， `(x+y)/2` 和 `x*y` 。
 
-(You need to use a loop to allocate each `[]uint8` inside the `[][]uint8`.)
+（需要使用循環來分配 `[][]uint8` 中的每個 `[]uint8`。）
 
-(Use `uint8(intValue)` to convert between types.)
+（使用 `uint8(intValue)` 在類型之間進行轉換。）
 
 .play prog/tour/exercise-slices.go
 
-* Maps
+* map
 
-A map maps keys to values.
+map 映射鍵到值。
 
-Maps must be created with `make` (not `new`) before use; the `nil` map is empty and cannot be assigned to.
+map 在使用之前必須用 `make` 而不是 `new` 來創建；值為 `nil` 的 map 是空的，並且不能賦值。
 
 .play prog/tour/maps.go
 
-* Map literals
+* map 的文法
 
-Map literals are like struct literals, but the keys are required.
+map 的文法跟結構體文法相似，不過必須有鍵名。
 
 .play prog/tour/map-literals.go
 
-* Map literals continued
+* map 的文法（續）
 
-If the top-level type is just a type name, you can omit it from the elements of the literal.
+如果頂級的類型只有類型名的話，可以在文法的元素中省略鍵名。
 
 .play prog/tour/map-literals-continued.go
 
-* Mutating Maps
+* 修改 map
 
-Insert or update an element in map `m`:
+在 map `m` 中插入或修改一個元素：
 
 	m[key] = elem
 
-Retrieve an element:
+獲得元素：
 
-	elem = m[key]
+    elem = m[key]
 
-Delete an element:
+刪除元素：
 
 	delete(m, key)
 
-Test that a key is present with a two-value assignment:
+通過雙賦值檢測某個鍵存在：
 
-	elem, ok = m[key]
+    elem, ok = m[key]
 
-If `key` is in `m`, `ok` is `true`. If not, `ok` is `false` and `elem` is the zero value for the map's element type.
+如果 `key` 在 `m` 中， `ok` 為 `true`。否則，`ok` 為 `false` ，並且 `elem` 是 map 的元素類型的零值。
 
-Similarly, when reading from a map if the key is not present the result is the zero value for the map's element type.
+同樣的，當從 map 中讀取某個不存在的鍵時，結果是 map 的元素類型的零值。
 
 .play prog/tour/mutating-maps.go
 
-* Exercise: Maps
+* 練習：map
 
-Implement `WordCount`.  It should return a map of the counts of each “word” in the string `s`. The `wc.Test` function runs a test suite against the provided function and prints success or failure.
+實現 `WordCount` 。它應當返回一個含有 `s` 中每個「詞」個數的 map。函式 `wc.Test` 針對這個函式執行一個測試用例，並顯示成功或者失敗。
 
-You might find [[http://golang.org/pkg/strings/#Fields][strings.Fields]] helpful.
+你會發現 [[http://golang.org/pkg/strings/#Fields][strings.Fields]] 很有幫助。
 
 .play prog/tour/exercise-maps.go
 
-* Function values
+* 函式為值
 
-Functions are values too.
+函式也是值。
 
 .play prog/tour/function-values.go
 
-* Function closures
+* 函式的閉包
 
-Go functions may be closures. A closure is a function value that references variables from outside its body. The function may access and assign to the referenced variables; in this sense the function is "bound" to the variables.
+Go 函式可以是閉包的。閉包是一個函式值，它來自函式體的外部的變數引用。函式可以對這個引用值進行訪問和賦值；換句話說這個函式被「綁定」在這個變數上。
 
-For example, the `adder` function returns a closure. Each closure is bound to its own `sum` variable.
+例如，函式 `adder` 返回一個閉包。每個閉包都被綁定到其各自的 `sum` 變數上。
 
 .play prog/tour/function-closures.go
 
-* Exercise: Fibonacci closure
+* 練習：斐波納契閉包
 
-Let's have some fun with functions.
+現在來通過函式做些有趣的事情。
 
-Implement a `fibonacci` function that returns a function (a closure) that returns successive fibonacci numbers.
+實現一個 `fibonacci` 函式，返回一個函式（一個閉包）可以返回連續的斐波納契數。
 
 .play prog/tour/exercise-fibonacci-closure.go
 
-* Switch
+* switch
 
-You probably knew what `switch` was going to look like.
+你大概已知道 `switch` 的樣子了。
 
-A case body breaks automatically, unless it ends with a `fallthrough` statement.
+除非以 `fallthrough` 語句結束，否則分支會自動終止。
 
 .play prog/tour/switch.go
 
-* Switch evaluation order
+* switch 的執行順序
 
-Switch cases evaluate cases from top to bottom, stopping when a case succeeds.
+switch 的條件從上到下的執行，當匹配成功的時候停止。
 
-(For example,
+（例如，
 
 	switch i {
 	case 0:
 	case f():
 	}
 
-does not call `f` if `i==0`.)
+當 `i==0` 時不會調用 `f` 。）
 
-#appengine: *Note:* Time in the Go playground always appears to start at
-#appengine: 2009-11-10 23:00:00 UTC, a value whose significance is left as an
-#appengine: exercise for the reader.
+#appengine: *注意：* Go playground 中的時間總是從 2009-11-10 23:00:00 UTC 開始，
+#appengine: 如何校驗這個值作為一個練習留給讀者完成。
 
 .play prog/tour/switch-evaluation-order.go
 
-* Switch with no condition
+* 沒有條件的 switch
 
-Switch without a condition is the same as `switch`true`.
+沒有條件的 switch 同 `switch`true` 一樣。
 
-This construct can be a clean way to write long if-then-else chains.
+這一構造使得可以用更清晰的形式來編寫長的 if-then-else 鏈。
 
 .play prog/tour/switch-with-no-condition.go
 
-* Advanced Exercise: Complex cube roots
+* 進階練習：複數的立方跟
 
-Let's explore Go's built-in support for complex numbers via the `complex64` and `complex128` types. For cube roots, Newton's method amounts to repeating:
+讓我們通過 `complex64` 和 `complex128` 來探索一下 Go 內建的複數。對於立方根，牛頓法需要大量循環：
 
 .image static/newton3.png
 
-Find the cube root of 2, just to make sure the algorithm works. There is a [[http://golang.org/pkg/math/cmplx/#Pow][Pow]] function in the `math/cmplx` package.
+找到 2 的立方根，確保算法能夠工作。在 `math/cmplx` 包中有 [[http://golang.org/pkg/math/cmplx/#Pow][Pow]] 函式。
 
 .play prog/tour/advanced-exercise-complex-cube-roots.go
 
-* Methods and Interfaces
+* 方法和介面
 
-The next group of slides covers methods and interfaces, the constructs that
-define objects and their behavior.
+下面的一組投影片包含了方法和介面，以及定義對象和其行為的結構。
 
-* Methods
+* 方法
 
-Go does not have classes. However, you can define methods on struct types.
+Go 沒有類。然而，仍然可以在結構體類型上定義方法。
 
-The _method_receiver_ appears in its own argument list between the `func` keyword and the method name.
+_方法接收者_ 出現在 `func` 關鍵字和方法名之間的參數中。
 
 .play prog/tour/methods.go
 
-* Methods continued
+* 方法（續）
 
-In fact, you can define a method on _any_ type you define in your package, not just structs.
+事實上，可以對包中的 _任意_ 類型定義任意方法，而不僅僅是針對結構體。
 
-You cannot define a method on a type from another package, or on a basic type.
+不能對來自其他包的類型或基礎類型定義方法。
 
 .play prog/tour/methods-continued.go
 
-* Methods with pointer receivers
+* 接收者為指針的方法
 
-Methods can be associated with a named type or a pointer to a named type.
+方法可以與命名類型或命名類型的指針關聯。
 
-We just saw two `Abs` methods. One on the `*Vertex` pointer type and the other on the `MyFloat` value type.
+剛剛看到的兩個 `Abs` 方法。一個是在 `*Vertex` 指針類型上，而另一個在 `MyFloat` 值類型上。
+		有兩個原因需要使用指針接收者。首先避免在每個方法調用中拷貝值（如果值類型是大的結構體的話會更有效率）。其次，方法可以修改接收者指向的值。
 
-There are two reasons to use a pointer receiver. First, to avoid copying the value on each method call (more efficient if the value type is a large struct). Second, so that the method can modify the value that its receiver points to.
+嘗試修改 `Abs` 的定義，同時 `Scale` 方法使用 `Vertex` 代替 `*Vertex` 作為接收者。
 
-Try changing the declarations of the `Abs` and `Scale` methods to use `Vertex` as the receiver, instead of `*Vertex`.
+當 `v` 是 `Vertex` 的時候 `Scale` 方法沒有任何作用。 `Scale` 修改 `v` 。當 `v` 是一個值（非指針），方法看到的是 `Vertex` 的副本，並且無法修改原始值。
 
-The `Scale` method has no effect when `v` is a `Vertex`. `Scale` mutates `v`. When `v` is a value (non-pointer) type, the method sees a copy of the `Vertex` and cannot mutate the original value.
-
-`Abs` works either way. It only reads `v`. It doesn't matter whether it is reading the original value (through a pointer) or a copy of that value.
+`Abs` 的工作方式是一樣的。只不過，僅僅讀取 `v` 。所以讀取的是原始值（通過指針）還是那個值的副本並沒有關係。
 
 .play prog/tour/methods-with-pointer-receivers.go
 
-* Interfaces
+* 介面
 
-An interface type is defined by a set of methods.
+介面類型是由一組方法定義的集合。
 
-A value of interface type can hold any value that implements those methods.
+介面類型的值可以存放實現這些方法的任何值。
 
-*Note:* The code on the left fails to compile.
+*注意：* 左邊的原始碼會導致編譯失敗。	
 
-`Vertex` doesn't satisfy `Abser` because
-the `Abs` method is defined only on `*Vertex`, not `Vertex`.
+由於 `Abs` 只定義在 `*Vertex` 上，而不是 `Vertex` 。
+所以 `Vertex` 不滿足 `Abser` 。
 
 .play prog/tour/interfaces.go
 
-* Interfaces are satisfied implicitly
+* 隱式介面
 
-A type implements an interface by implementing the methods.
+類型通過實現那些方法來實現介面。
 
-_There_is_no_explicit_declaration_of_intent._
+_沒有顯式聲明的必要。_
 
-Implicit interfaces decouple implementation packages from the packages that define the interfaces: neither depends on the other.
+隱式介面解藕了實現介面的包和定義介面的包：互不依賴。
 
-It also encourages the definition of precise interfaces, because you don't have to find every implementation and tag it with the new interface name.
+因此，也就無需在每一個實現上增加新的介面名稱，這樣同時也鼓勵了明確的介面定義。
 
-[[http://golang.org/pkg/io/][Package io]] defines `Reader` and `Writer`; you don't have to.
+[[http://golang.org/pkg/io/][包 io]] 定義了 `Reader` 和 `Writer` ；其實不一定要這麼做。
 
 .play prog/tour/interfaces-are-satisfied-implicitly.go
 
-* Errors
+* 錯誤
 
-An error is anything that can describe itself as an error string. The idea is captured by the predefined, built-in interface type, `error`, with its single method, `Error`, returning a string:
+錯誤是可以用字符串描述自己的任何東西。主要思路是由預定義的內建介面類型 `error`，和方法 `Error`，返回字符串：
 
 	type error interface {
 		Error() string
 	}
 
-The `fmt` package's various print routines automatically know to call the method when asked to print an `error`.
+當用 `fmt` 包的多種不同的列印函式輸出一個 `error` 時，會自動的調用該方法。
 
 .play prog/tour/errors.go
 
-* Exercise: Errors
+* 練習：錯誤
 
-Copy your `Sqrt` function from the earlier exercises and modify it to return an `error` value.
+從之前的練習中複製 `Sqrt` 函式，並修改使其返回 `error` 值。	  
 
-`Sqrt` should return a non-nil error value when given a negative number, as it doesn't support complex numbers.
-
-Create a new type
-
+`Sqrt` 接收到一個負數時，應當返回一個非 nil 的錯誤值。複數同樣也不被支持。
+	
+創建一個新類型
+		
 	type ErrNegativeSqrt float64
 
-and make it an `error` by giving it a
+為其實現
 
 	func (e ErrNegativeSqrt) Error() string
 
-method such that `ErrNegativeSqrt(-2).Error()` returns `"cannot`Sqrt`negative`number:`-2"`.
+使其成為一個 `error`， 該方法就可以讓 `ErrNegativeSqrt(-2).Error()` 返回 `"cannot Sqrt negative number: -2"`。
 
-*Note:* a call to `fmt.Print(e)` inside the `Error` method will send the program into an infinite loop. You can avoid this by converting `e` first: `fmt.Print(float64(e))`. Why?
+*注意：* 在 `Error` 方法內調用 `fmt.Print(e)` 將會讓程序陷入死循環。可以通過先轉換 `e` 來避免這個問題：`fmt.Print(float64(e))`。請思考這是為什麼呢？
 
-Change your `Sqrt` function to return an `ErrNegativeSqrt` value when given a negative number.
+修改 `Sqrt` 函式，使其接受一個負數時，返回 `ErrNegativeSqrt` 值。
 
 .play prog/tour/exercise-errors.go
 
-* Web servers
-
-[[http://golang.org/pkg/net/http/][Package http]] serves HTTP requests using any value that implements `http.Handler`:
+* Web 服務器
+	
+[[http://golang.org/pkg/net/http/][包 http]] 通過任何實現了 `http.Handler` 的值來響應 HTTP 請求：
 
 	package http
-	
+
 	type Handler interface {
 		ServeHTTP(w ResponseWriter, r *Request)
 	}
 
-In this example, the type `Hello` implements `http.Handler`.
+在這個例子中，類型 `Hello` 實現了 `http.Handler` 。
 
-Visit [[http://localhost:4000/][http://localhost:4000/]] to see the greeting.
-
-#appengine: *Note:* This example won't run through the web-based tour user
-#appengine: interface. To try writing web servers you may want to
-#appengine: [[http://golang.org/doc/install/][Install Go]].
+訪問 [[http://localhost:4000/][http://localhost:4000/]] 會看到來自程序的問候。
+	
+#appengine: *注意：* 這個例子無法在基於 web 的指南用戶界面運行。為了嘗試編寫 
+#appengine: web 服務器，可能需要[[http://golang.org/doc/install/][安裝 Go]]。
 
 .play prog/tour/web-servers.go
 
-* Exercise: HTTP Handlers
+* 練習：HTTP 處理
 
-Implement the following types and define ServeHTTP methods on them. Register them to handle specific paths in your web server.
+實現下面的類型，並在其上定義 ServeHTTP 方法。在 web 服務器中註冊它們來處理指定的路徑。
 
 	type String string
-	
+
 	type Struct struct {
 		Greeting string
 		Punct    string
 		Who      string
 	}
 
-For example, you should be able to register handlers using:
+例如，可以使用如下方式註冊處理方法：
 
 	http.Handle("/string", String("I'm a frayed knot."))
 	http.Handle("/struct", &Struct{"Hello", ":", "Gophers!"})
 
 .play prog/tour/exercise-http-handlers.go
 
-* Images
+* 圖片
 
-[[http://golang.org/pkg/image/#Image][Package image]] defines the `Image` interface:
-
+[[http://golang.org/pkg/image/#Image][Package image]] 定義了 `Image` 介面：
+		
 	package image
-	
+
 	type Image interface {
 		ColorModel() color.Model
 		Bounds() Rectangle
 		At(x, y int) color.Color
 	}
 
-(See [[http://golang.org/pkg/image/#Image][the documentation]] for all the details.)
+（參閱[[http://golang.org/pkg/image/#Image][文檔]]了解全部信息。）
 
-Also, `color.Color` and `color.Model` are interfaces, but we'll ignore that by using the predefined implementations `color.RGBA` and `color.RGBAModel`. These interfaces and types are specified by the [[http://golang.org/pkg/image/color/][image/color package]]
+同樣， `color.Color` 和 `color.Model` 也是介面，但是通常因為直接使用預定義的實現 `image.RGBA` 和 `image.RGBAModel` 而被忽視了。這些介面和類型由[[http://golang.org/pkg/image/color/][image/color 包]]定義。
 
 .play prog/tour/images.go
 
-* Exercise: Images
+* 練習：圖片
 
-Remember the picture generator you wrote earlier? Let's write another one, but this time it will return an implementation of `image.Image` instead of a slice of data.
+還記得之前編寫的圖片生成器嗎？現在來另外編寫一個，不過這次將會返回 `image.Image` 來代替 slice 的數據。
 
-Define your own `Image` type, implement [[http://golang.org/pkg/image/#Image][the necessary methods]], and call `pic.ShowImage`.
+自定義的 `Image` 類型，要實現[[http://golang.org/pkg/image/#Image][必要的方法]]，並且調用 `pic.ShowImage` 。
 
-`Bounds` should return a `image.Rectangle`, like `image.Rect(0,`0,`w,`h)`.
+`Bounds` 應當返回一個 `image.Rectangle`，例如 `image.Rect(0, 0, w, h)` 。
 
-`ColorModel` should return `color.RGBAModel`.
+`ColorModel` 應當返回 `image.RGBAModel` 。
 
-`At` should return a color; the value `v` in the last picture generator corresponds to `color.RGBA{v,`v,`255,`255}` in this one.
+`At` 應當返回一個顏色；在這個例子裡，在最後一個圖片生成器的值 `v` 匹配 `color.RGBA{v,`v,`255,`255}` 。
 
 .play prog/tour/exercise-images.go
 
-* Exercise: Rot13 Reader
+* 練習：Rot13 讀取器
 
-A common pattern is an [[http://golang.org/pkg/io/#Reader][io.Reader]] that wraps another `io.Reader`, modifying the stream in some way.
+一般的模式是 [[http://golang.org/pkg/io/#Reader][io.Reader]] 包裹另一個 `io.Reader` ，用某些途徑修改特定的流。
 
-For example, the [[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] function takes an `io.Reader` (a stream of gzipped data) and returns a `*gzip.Reader` that also implements `io.Reader` (a stream of the decompressed data).
+例如，[[http://golang.org/pkg/compress/gzip/#NewReader][gzip.NewReader]] 函式輸入一個 `io.Reader` （gzip 的數據流）並且返回一個同樣實現了 `io.Reader` 的 `*gzip.Reader`（解壓縮後的數據流）。
+		
+實現一個實現了 `io.Reader` 的 `rot13Reader` ，用 [[http://en.wikipedia.org/wiki/ROT13][ROT13]] 修改數據流中的所有的字母進行密文替換。
 
-Implement a `rot13Reader` that implements `io.Reader` and reads from an `io.Reader`, modifying the stream by applying the [[http://en.wikipedia.org/wiki/ROT13][ROT13]] substitution cipher to all alphabetical characters.
-
-The `rot13Reader` type is provided for you.  Make it an `io.Reader` by implementing its `Read` method.
+`rot13Reader` 已經提供。通過實現其 `Read` 方法使得它匹配 `io.Reader` 。
 
 .play prog/tour/exercise-rot-reader.go
 
-* Concurrency
+* 並行
 
-The next section covers Go's concurrency primitives.
+接下來的章節涵蓋了Go的並行原指令。
 
-* Goroutines
+* goroutine
 
-A _goroutine_ is a lightweight thread managed by the Go runtime.
+_goroutine_ 是由Go運行時環境管理的輕量級線程。
 
-	go f(x, y, z)
+    go f(x, y, z)
 
-starts a new goroutine running
+開啟一個新的 goroutine 執行
 
 	f(x, y, z)
 
-The evaluation of `f`, `x`, `y`, and `z` happens in the current goroutine and the execution of `f` happens in the new goroutine.
+`f` ， `x` ， `y` 和 `z` 是當前goroutine中定義的，但是在新的goroutine中運行 `f` 。
 
-Goroutines run in the same address space, so access to shared memory must be synchronized. The [[http://golang.org/pkg/sync/][`sync`]] package provides useful primitives, although you won't need them much in Go as there are other primitives. (See the next slide.)
+goroutine在相同的地址空間中運行，因此訪問共享記憶體必須進行同步。[[http://golang.org/pkg/sync/][`sync`]] 提供了這種可能，不過在Go中並不經常用到，因為有其他的辦法。（在接下來的內容中會涉及到。）
 
 .play prog/tour/goroutines.go
 
-* Channels
+* channel
 
-Channels are a typed conduit through which you can send and receive values with the channel operator, `<-`.
+channel是有類型的管道，可以用channel操作符 `<-` 對其發送或者接收值。
 
-	ch <- v    // Send v to channel ch.
-	v := <-ch  // Receive from ch, and
-	           // assign value to v.
+    ch <- v    // 將 v 送入 channel ch。
+    v := <-ch  // 從 ch 接收，並且賦值給 v。
 
-(The data flows in the direction of the arrow.)
+（「箭頭」就是數據流的方向。）
 
-Like maps and slices, channels must be created before use:
+和map與slice一樣，channel使用前必須創建：
 
-	ch := make(chan int)
+    ch := make(chan int)
 
-By default, sends and receives block until the other side is ready. This allows goroutines to synchronize without explicit locks or condition variables.
+默認情況下，在另一端準備好之前，發送和接收都會阻塞。這使得goroutine可以在沒有明確的鎖或競態變數的情況下進行同步。
 
 .play prog/tour/channels.go
 
-* Buffered Channels
+* 緩衝channel
 
-Channels can be _buffered_.  Provide the buffer length as the second argument to `make` to initialize a buffered channel:
+channel可以是 _帶緩衝的_ 。為 `make` 提供第二個參數作為緩衝長度來初始化一個緩衝 channel：
 
 	ch := make(chan int, 100)
 
-Sends to a buffered channel block only when the buffer is full. Receives block when the buffer is empty.
+向緩衝 channel 發送數據的時候，只有在緩衝區滿的時候才會阻塞。當緩衝區清空的時候接受阻塞。
 
-Modify the example to overfill the buffer and see what happens.
+修改例子使得緩衝區被填滿，然後看看會發生什麼。
 
 .play prog/tour/buffered-channels.go
 
-* Range and Close
+* range和close
 
-A sender can `close` a channel to indicate that no more values will be sent. Receivers can test whether a channel has been closed by assigning a second parameter to the receive expression: after
+發送者可以 `close` 一個channel來表示再沒有值會被發送了。接收者可以通過賦值語句的第二參數來測試channel是否被關閉：當沒有值可以接收並且channel已經被關閉，那麼經過
 
 	v, ok := <-ch
 
-`ok` is `false` if there are no more values to receive and the channel is closed.
+之後 `ok` 會被設置為 `false` 。
 
-The loop `for`i`:=`range`c` receives values from the channel repeatedly until it is closed.
-
-*Note:* Only the sender should close a channel, never the receiver. Sending on a closed channel will cause a panic.
-
-*Another*note*: Channels aren't like files; you don't usually need to close them. Closing is only necessary when the receiver must be told there are no more values coming, such as to terminate a `range` loop.
+循環 `for i := range c` 會不斷從channel接收值，直到它被關閉。
+        
+*注意：* 只有發送者才能關閉channel，而不是接收者。向一個已經關閉的channel發送數據會引起panic。
+*還要注意：* channel與文件不同；通常情況下無需關閉它們。只有在需要告訴接收者沒有更多的數據的時候才有必要進行關閉，例如中斷一個 `range` 。
 
 .play prog/tour/range-and-close.go
 
-* Select
+* select
+        
+`select` 語句使得一個goroutine在多個通訊操作上等待。
 
-The `select` statement lets a goroutine wait on multiple communication operations.
-
-A `select` blocks until one of its cases can run, then it executes that case.  It chooses one at random if multiple are ready.
+`select` 會阻塞，直到條件分支中的某個可以繼續執行，這時就會執行那個條件分支。當多個都準備好的時候，會隨機選擇一個。
 
 .play prog/tour/select.go
 
-* Default Selection
+* 默認選擇
 
-The `default` case in a `select` is run if no other case is ready.
+當 `select` 中的其他條件分支都沒有準備好的時候，`default` 分支會被執行。
 
-Use a `default` case to try a send or receive without blocking:
+為了非阻塞的發送或者接收，可使用 `default` 分支：
 
-	select {
-	case i := <-c:
-		// use i
-	default:
-		// receiving from c would block
-	}
-
+    select {
+    case i := <-c:
+    	// 使用 i
+    default:
+	// 從 c 讀取會阻塞
+    }
+        
 .play prog/tour/default-selection.go
 
-* Exercise: Equivalent Binary Trees
+* 練習：等價二叉樹
 
-There can be many different binary trees with the same sequence of values stored at the leaves. For example, here are two binary trees storing the sequence 1, 1, 2, 3, 5, 8, 13.
+可以用多種不同的二叉樹的葉子節點存儲相同的數列值。例如，這裡有兩個二叉樹保存了序列 1，1，2，3，5，8，13。
 
 .image static/tree.png
 
-A function to check whether two binary trees store the same sequence is quite complex in most languages. We'll use Go's concurrency and channels to write a simple solution.
+用於檢查兩個二叉樹是否存儲了相同的序列的函式在多數語言中都是相當複雜的。這裡將使用Go的並行和channel來編寫一個簡單的解法。
 
-This example uses the `tree` package, which defines the type:
+這個例子使用了 `tree` 包，定義了類型：
 
-	type Tree struct {
-		Left  *Tree
-		Value int
-		Right *Tree
-	}
+    type Tree struct {
+        Left  *Tree
+        Value int
+        Right *Tree
+    }
 
-* Exercise: Equivalent Binary Trees
+* 練習：等價二叉樹
 
-*1.* Implement the `Walk` function.
+*1.* 實現 `Walk` 函式。
 
-*2.* Test the `Walk` function.
+*2.* 測試 `Walk` 函式。
 
-The function `tree.New(k)` constructs a randomly-structured binary tree holding the values `k`, `2k`, `3k`, ..., `10k`.
+函式 `tree.New(k)` 構造了一個隨機結構的二叉樹，保存了值 `k` ， `2k` ， `3k` ， ... ， `10k` 。
+創建一個新的 channel `ch` 並且對其進行步進：
 
-Create a new channel `ch` and kick off the walker:
+    go Walk(tree.New(1), ch)
 
-	go Walk(tree.New(1), ch)
+然後從 channel 中讀取並且列印 10 個值。應當是值 1，2，3，...，10。
+    
+*3.* 用 `Walk` 實現 `Same` 函式來檢測是否 `t1` 和 `t2` 存儲了相同的值。
 
-Then read and print 10 values from the channel. It should be the numbers 1, 2, 3, ..., 10.
+*4.* 測試 `Same` 函式。
 
-*3.* Implement the `Same` function using `Walk` to determine whether `t1` and `t2` store the same values.
-
-*4.* Test the `Same` function.
-
-`Same(tree.New(1),`tree.New(1))` should return true, and `Same(tree.New(1),`tree.New(2))` should return false.
+`Same(tree.New(1),`tree.New(1))` 應當返回true，而 `Same(tree.New(1),`tree.New(2))` 應當返回false。
 
 .play prog/tour/exercise-equivalent-binary-trees.go
 
-* Exercise: Web Crawler
+* 練習：Web 爬蟲
 
-In this exercise you'll use Go's concurrency features to parallelize a web crawler.
+在這個練習中，將會使用 Go 的並行特性來並行執行 web 爬蟲。
 
-Modify the `Crawl` function to fetch URLs in parallel without fetching the same URL twice.
+修改 `Crawl` 函式來並行的抓取 URLs，並且保證不重複。
 
 .play prog/tour/exercise-web-crawler.go
 
 * Where to Go from here...
 
-#appengine: You can get started by
-#appengine: [[http://golang.org/doc/install/][installing Go]] or downloading the
+#appengine: 你可以從
+#appengine: [[http://golang.org/doc/install/][安裝Go]]開始，或者下載
 #appengine: [[http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go][Go App Engine SDK]].
 
-#appengine: Once you have Go installed, the
-The
-[[http://golang.org/doc/][Go Documentation]] is a great place to
-#appengine: continue.
-start.
-It contains references, tutorials, videos, and more.
+#appengine: 安裝了Go以後，[[http://golang.org/doc/][Go Documentation]]是個很好的接點。
+[[http://golang.org/doc/][Go Documentation]]是個很好的接點。
+它包含了參考、指南、影片等等更多資料。
 
-To learn how to organize and work with Go code, watch [[http://www.youtube.com/watch?v=XCsL89YtqCs][this screencast]] or read [[http://golang.org/doc/code.html][How to Write Go Code]].
+若想了解如何組織Go原始碼並在其上工作，可以參閱[[http://www.youtube.com/watch?v=XCsL89YtqCs][這個影片]]，或者閱讀[[http://golang.org/doc/code.html][如何編寫Go原始碼]]。
 
-If you need help with the standard library, see the [[http://golang.org/pkg/][package reference]]. For help with the language itself, you might be surprised to find the [[http://golang.org/ref/spec][Language Spec]] is quite readable.
+若有標準庫上的問題需要幫助，可以參考[[http://golang.org/pkg/][包手冊]]。若有語言本身的問題，可參考[[http://golang.org/ref/spec][語言規範]]。
 
-To further explore Go's concurrency model, watch
-[[http://www.youtube.com/watch?v=f6kdp27TYZs][Go Concurrency Patterns]]
-([[http://talks.golang.org/2012/concurrency.slide][slides]])
-and
-[[https://www.youtube.com/watch?v=QDDwwePbDtw][Advanced Go Concurrency Patterns]]
-([[http://talks.golang.org/2013/advconc.slide][slides]])
-and read the
-[[http://golang.org/doc/codewalk/sharemem/][Share Memory by Communicating]]
-codewalk.
+進一步探索Go的並行模型，可參閱
+[[http://www.youtube.com/watch?v=f6kdp27TYZs][Go 並行模型]]
+([[http://talks.golang.org/2012/concurrency.slide][投影片]])
+以及
+[[https://www.youtube.com/watch?v=QDDwwePbDtw][深入Go並行模型]]
+([[http://talks.golang.org/2013/advconc.slide][投影片]])
+並且閱讀
+[[http://golang.org/doc/codewalk/sharemem/][使用通訊共享記憶體]]
+的原始碼之旅。
 
-To get started writing web applications, watch
-[[http://vimeo.com/53221558][A simple programming environment]]
-([[http://talks.golang.org/2012/simple.slide][slides]])
-and read the
-[[http://golang.org/doc/articles/wiki/][Writing Web Applications]] tutorial.
+想要開始編寫Web應用，請參閱
+[[http://vimeo.com/53221558][一個簡單的編程環境]]
+([[http://talks.golang.org/2012/simple.slide][投影片]])
+並且閱讀
+[[http://golang.org/doc/articles/wiki/][編寫Web應用]]的指南.
 
-The [[http://golang.org/doc/codewalk/functions/][First Class Functions in Go]] codewalk gives an interesting perspective on Go's function types.
+[[http://golang.org/doc/codewalk/functions/][Go中的一等公民函式]]展示了有趣的函式類型。
 
-The [[http://blog.golang.org/][Go Blog]] has a large archive of informative Go articles.
+[[http://blog.golang.org/][Go Blog]]裡有更多關於Go的信息可供使用。
 
-Visit [[http://golang.org][golang.org]] for more.
+想了解更多內容，請造訪[[http://golang.org][golang.org]]。
 
