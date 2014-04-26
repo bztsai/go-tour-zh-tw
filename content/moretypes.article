@@ -1,104 +1,103 @@
-More types: structs, slices, and maps.
-Learn how to define types based on existing ones: this lesson covers structs, arrays, slices, and maps.
+複雜類型： struct、slice 和 map。
+學習如何基於已有類型定義新的類型：本課涵蓋了結構體、陣列和 map。
 
-The Go Authors
+Go 作者組
 http://golang.org
 
-* Structs
+* 結構體
 
-A `struct` is a collection of fields.
+一個結構體（ `struct` ）就是一個字段的集合。
 
-(And a `type` declaration does what you'd expect.)
+（而 `type` 的含義跟其字面意思相符。）
 
 .play prog/tour/structs.go
 
-* Struct Fields
+* 結構體字段
 
-Struct fields are accessed using a dot.
+結構體字段使用點號來訪問。
 
 .play prog/tour/struct-fields.go
 
-* Pointers
+* 指針
 
-Go has pointers, but no pointer arithmetic.
+Go有指針，但是沒有指針運算。
 
-Struct fields can be accessed through a struct pointer. The indirection through the pointer is transparent.
+結構體字段可以通過結構體指針來訪問。通過指針間接的訪問是透明的。
 
 .play prog/tour/pointers.go
 
-* Struct Literals
+* 結構體文法
 
-A struct literal denotes a newly allocated struct value by listing the values of its fields.
+結構體文法表示通過結構體字段的值作為列表來新分配一個結構體。
 
-You can list just a subset of fields by using the `Name:` syntax. (And the order of named fields is irrelevant.)
+使用 `Name:` 語法可以僅列出部分字段。（字段名的順序無關。）
 
-The special prefix `&` constructs a pointer to a newly allocated struct.
+特殊的前綴 `&` 構造了指向結構體的指針。
 
 .play prog/tour/struct-literals.go
 
-* The new function
+* new 函式
 
-The expression `new(T)` allocates a zeroed `T` value and returns a pointer to it.
+表達式 `new(T)` 分配了一個零初始化的 `T` 值，並返回指向它的指針。
 
-	var t *T = new(T)
+    var t *T = new(T)
 
-or
+或
 
 	t := new(T)
 
 .play prog/tour/the-new-function.go
 
-* Arrays
+* 陣列
 
-The type `[n]T` is an array of `n` values of type `T`.
+類型 `[n]T` 是一個有 `n` 個類型為 `T` 的值的陣列。
 
-The expression
+表達式
 
 	var a [10]int
 
-declares a variable `a` as an array of ten integers.
+定義變數 `a` 是一個有十個整數的陣列。
 
-An array's length is part of its type, so arrays cannot be resized.
-This seems limiting, but don't worry;
-Go provides a convenient way of working with arrays.
+陣列的長度是其類型的一部分，因此陣列不能改變大小。
+這看起來是一個制約，但是請不要擔心；Go 提供了更加便利的方式來使用陣列。
 
 .play prog/tour/array.go
 
-* Slices
+* slice
+        
+一個 slice 會指向一個陣列，並且包含了長度信息。
 
-A slice points to an array of values and also includes a length.
-
-`[]T` is a slice with elements of type `T`.
+`[]T` 是一個元素類型為 `T` 的 slice。
 
 .play prog/tour/slices.go
 
-* Slicing slices
+* 對 slice 切片
 
-Slices can be re-sliced, creating a new slice value that points to the same array.
+slice 可以重新切片，創建一個新的 slice 值指向相同的陣列。
 
-The expression
+表達式
 
-	s[lo:hi]
+    s[lo:hi]
+        
+表示從 `lo` 到 `hi-1` 的 slice 元素，含兩端。因此
 
-evaluates to a slice of the elements from `lo` through `hi-1`, inclusive. Thus
+    s[lo:lo]
 
-	s[lo:lo]
+是空的，而
 
-is empty and
+    s[lo:lo+1]
 
-	s[lo:lo+1]
-
-has one element.
+有一個元素。
 
 .play prog/tour/slicing-slices.go
 
-* Making slices
+* 構造 slice
 
-Slices are created with the `make` function. It works by allocating a zeroed array and returning a slice that refers to that array:
+slice 由函式 `make` 創建。這會分配一個零長度的陣列並且返回一個 slice 指向這個陣列：
 
-	a := make([]int, 5)  // len(a)=5
+    a := make([]int, 5)  // len(a)=5
 
-To specify a capacity, pass a third argument to `make`:
+為了指定容量，可傳遞第三個參數到 `make` ：
 
 	b := make([]int, 0, 5) // len(b)=0, cap(b)=5
 
@@ -107,129 +106,129 @@ To specify a capacity, pass a third argument to `make`:
 
 .play prog/tour/making-slices.go
 
-* Nil slices
+* 空 slice
 
-The zero value of a slice is `nil`.
+slice 的零值是 `nil` 。
 
-A nil slice has a length and capacity of 0.
+一個 nil 的 slice 的長度和容量是 0。
 
-(To learn more about slices, read the [[http://golang.org/doc/articles/slices_usage_and_internals.html][Slices: usage and internals]] article.)
+（了解更多關於 slice 的內容，參閱文章[[http://golang.org/doc/articles/slices_usage_and_internals.html][slice：使用和內幕]]。）
 
 .play prog/tour/nil-slices.go
 
-* Range
+* range
 
-The `range` form of the `for` loop iterates over a slice or map.
+`for` 循環的 `range` 格式可以對 slice 或者 map 進行迭代循環。
 
 .play prog/tour/range.go
 
-* Range continued
+* range（續）
 
-You can skip the index or value by assigning to `_`.
+可以將值賦值給 `_` 來忽略序號和值。
 
-If you only want the index, drop the ", value" entirely.
+如果只需要索引值，去掉「, value」的部分即可。
 
 .play prog/tour/range-continued.go
 
-* Exercise: Slices
+* 練習：slice
 
-Implement `Pic`. It should return a slice of length `dy`, each element of which is a slice of `dx` 8-bit unsigned integers. When you run the program, it will display your picture, interpreting the integers as grayscale (well, bluescale) values.
+實現 `Pic` 。它返回一個 slice 的長度 `dy` ，和 slice 中每個元素的長度的 8 位無符號整數 `dx` 。當執行這個程序，它會將整數轉換為灰度（好吧，藍度）圖片進行展示。
 
-The choice of image is up to you. Interesting functions include `x^y`, `(x+y)/2`, and `x*y`.
+圖片的實現已經完成。可能用到的函式包括 `>x^y` ， `(x+y)/2` 和 `x*y` 。
 
-(You need to use a loop to allocate each `[]uint8` inside the `[][]uint8`.)
+（需要使用循環來分配 `[][]uint8` 中的每個 `[]uint8`。）
 
-(Use `uint8(intValue)` to convert between types.)
+（使用 `uint8(intValue)` 在類型之間進行轉換。）
 
 .play prog/tour/exercise-slices.go
 
-* Maps
+* map
 
-A map maps keys to values.
+map 映射鍵到值。
 
-Maps must be created with `make` (not `new`) before use; the `nil` map is empty and cannot be assigned to.
+map 在使用之前必須用 `make` 而不是 `new` 來創建；值為 `nil` 的 map 是空的，並且不能賦值。
 
 .play prog/tour/maps.go
 
-* Map literals
+* map 的文法
 
-Map literals are like struct literals, but the keys are required.
+map 的文法跟結構體文法相似，不過必須有鍵名。
 
 .play prog/tour/map-literals.go
 
-* Map literals continued
+* map 的文法（續）
 
-If the top-level type is just a type name, you can omit it from the elements of the literal.
+如果頂級的類型只有類型名的話，可以在文法的元素中省略鍵名。
 
 .play prog/tour/map-literals-continued.go
 
-* Mutating Maps
+* 修改 map
 
-Insert or update an element in map `m`:
+在 map `m` 中插入或修改一個元素：
 
 	m[key] = elem
 
-Retrieve an element:
+獲得元素：
 
-	elem = m[key]
+    elem = m[key]
 
-Delete an element:
+刪除元素：
 
 	delete(m, key)
 
-Test that a key is present with a two-value assignment:
+通過雙賦值檢測某個鍵存在：
 
-	elem, ok = m[key]
+    elem, ok = m[key]
 
-If `key` is in `m`, `ok` is `true`. If not, `ok` is `false` and `elem` is the zero value for the map's element type.
+如果 `key` 在 `m` 中， `ok` 為 `true`。否則，`ok` 為 `false` ，並且 `elem` 是 map 的元素類型的零值。
 
-Similarly, when reading from a map if the key is not present the result is the zero value for the map's element type.
+同樣的，當從 map 中讀取某個不存在的鍵時，結果是 map 的元素類型的零值。
 
 .play prog/tour/mutating-maps.go
 
-* Exercise: Maps
+* 練習：map
 
-Implement `WordCount`.  It should return a map of the counts of each “word” in the string `s`. The `wc.Test` function runs a test suite against the provided function and prints success or failure.
+實現 `WordCount` 。它應當返回一個含有 `s` 中每個「詞」個數的 map。函式 `wc.Test` 針對這個函式執行一個測試用例，並顯示成功或者失敗。
 
-You might find [[http://golang.org/pkg/strings/#Fields][strings.Fields]] helpful.
+你會發現 [[http://golang.org/pkg/strings/#Fields][strings.Fields]] 很有幫助。
 
 .play prog/tour/exercise-maps.go
 
-* Function values
+* 函式為值
 
-Functions are values too.
+函式也是值。
 
 .play prog/tour/function-values.go
 
-* Function closures
+* 函式的閉包
 
-Go functions may be closures. A closure is a function value that references variables from outside its body. The function may access and assign to the referenced variables; in this sense the function is "bound" to the variables.
+Go 函式可以是閉包的。閉包是一個函式值，它來自函式體的外部的變數引用。函式可以對這個引用值進行訪問和賦值；換句話說這個函式被「綁定」在這個變數上。
 
-For example, the `adder` function returns a closure. Each closure is bound to its own `sum` variable.
+例如，函式 `adder` 返回一個閉包。每個閉包都被綁定到其各自的 `sum` 變數上。
 
 .play prog/tour/function-closures.go
 
-* Exercise: Fibonacci closure
+* 練習：斐波納契閉包
 
-Let's have some fun with functions.
+現在來通過函式做些有趣的事情。
 
-Implement a `fibonacci` function that returns a function (a closure) that returns successive fibonacci numbers.
+實現一個 `fibonacci` 函式，返回一個函式（一個閉包）可以返回連續的斐波納契數。
 
 .play prog/tour/exercise-fibonacci-closure.go
 
 
-* Advanced Exercise: Complex cube roots
+* 進階練習：複數的立方跟
 
-Let's explore Go's built-in support for complex numbers via the `complex64` and `complex128` types. For cube roots, Newton's method amounts to repeating:
+讓我們通過 `complex64` 和 `complex128` 來探索一下 Go 內建的複數。對於立方根，牛頓法需要大量循環：
 
 .image /content/img/newton3.png
 
-Find the cube root of 2, just to make sure the algorithm works. There is a [[http://golang.org/pkg/math/cmplx/#Pow][Pow]] function in the `math/cmplx` package.
+找到 2 的立方根，確保算法能夠工作。在 `math/cmplx` 包中有 [[http://golang.org/pkg/math/cmplx/#Pow][Pow]] 函式。
 
 .play prog/tour/advanced-exercise-complex-cube-roots.go
 
-* Congratulations!
+* 恭喜！
 
-You finished this lesson!
+你已經完成了本課程！
 
-You can go back to the list of [[/list][modules]] to find what to learn next, or continue with the [[javascript:click('.next-page')][next lesson]].
+你可以返回[[javascript:highlightAndClick(".logo")][A Tour of Go]]列表看看接下來學習什麼，或者繼續[[javascript:click('.next-page')][下個課程]]。
