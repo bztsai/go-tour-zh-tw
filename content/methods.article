@@ -90,7 +90,7 @@ _沒有顯式聲明的必要。_
 
 使其成為一個 `error`， 該方法就可以讓 `ErrNegativeSqrt(-2).Error()` 返回 `"cannot Sqrt negative number: -2"`。
 
-*注意：* 在 `Error` 方法內調用 `fmt.Print(e)` 將會讓程序陷入死循環。可以通過先轉換 `e` 來避免這個問題：`fmt.Print(float64(e))`。請思考這是為什麼呢？
+*注意：* 在 `Error` 方法內調用 `fmt.Print(e)` 將會讓程式陷入死循環。可以通過先轉換 `e` 來避免這個問題：`fmt.Print(float64(e))`。請思考這是為什麼呢？
 
 修改 `Sqrt` 函式，使其接受一個負數時，返回 `ErrNegativeSqrt` 值。
 
@@ -108,7 +108,7 @@ _沒有顯式聲明的必要。_
 
 在這個例子中，類型 `Hello` 實現了 `http.Handler` 。
 
-訪問 [[http://localhost:4000/][http://localhost:4000/]] 會看到來自程序的問候。
+訪問 [[http://localhost:4000/][http://localhost:4000/]] 會看到來自程式的問候。
 	
 #appengine: *注意：* 這個例子無法在基於 web 的指南用戶界面運行。為了嘗試編寫 
 #appengine: web 服務器，可能需要[[http://golang.org/doc/install/][安裝 Go]]。

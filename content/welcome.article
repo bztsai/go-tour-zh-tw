@@ -69,11 +69,11 @@ http://golang.org
 #appengine: 
 #appengine: - 在 Playground 中，時間從 2009-11-10 23:00:00 UTC（了解這個日期的重要含義是留給讀者的練習）。這使得根據可預見的輸出來緩存程式變得容易。
 #appengine: 
-#appengine: - 對於運行時間、CPU 和內存的使用同樣也有限制，並且程式是限制單一線程運行（但是可以有多個 goroutine）。
+#appengine: - 對於運行時間、CPU 和記憶體的使用同樣也有限制，並且程式是限制單一線程運行（但是可以有多個 goroutine）。
 #appengine: 
 #appengine: Playground 使用最新發布的 Go 的穩定版本。
 #appengine: 
-#appengine: 可參閱「[[http://blog.golang.org/playground][Go Playground 的內部機製(英文)]]」了解更多信息。
+#appengine: 可參閱「[[http://blog.golang.org/playground][Go Playground 的內部原指令(英文)]]」了解更多信息。
 #appengine: 
 #appengine: .play prog/tour/sandbox.go
 

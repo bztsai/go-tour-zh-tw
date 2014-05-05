@@ -16,7 +16,7 @@ _goroutine_ 是由Go運行時環境管理的輕量級線程。
 
 `f` ， `x` ， `y` 和 `z` 是當前goroutine中定義的，但是在新的goroutine中運行 `f` 。
 
-goroutine 在相同的地址空間中運行，因此訪問共享內存必須進行同步。[[http://golang.org/pkg/sync/][`sync`]] 提供了這種可能，不過在Go中並不經常用到，因為有其他的辦法。（在接下來的內容中會涉及到。）
+goroutine 在相同的地址空間中運行，因此訪問共享記憶體必須進行同步。[[http://golang.org/pkg/sync/][`sync`]] 提供了這種可能，不過在Go中並不經常用到，因為有其他的辦法。（在接下來的內容中會涉及到。）
 
 .play prog/tour/goroutines.go
 
@@ -148,17 +148,17 @@ channel可以是 _帶緩衝的_ 。為 `make` 提供第二個參數作為緩衝�
 
 進一步探索Go的並行模型，可參閱
 [[http://www.youtube.com/watch?v=f6kdp27TYZs][Go 並行模型]]
-([[http://talks.golang.org/2012/concurrency.slide][幻燈片]])
+([[http://talks.golang.org/2012/concurrency.slide][投影片]])
 以及
 [[https://www.youtube.com/watch?v=QDDwwePbDtw][深入Go並行模型]]
-([[http://talks.golang.org/2013/advconc.slide][幻燈片]])
+([[http://talks.golang.org/2013/advconc.slide][投影片]])
 並且閱讀
-[[http://golang.org/doc/codewalk/sharemem/][使用通訊共享內存]]
+[[http://golang.org/doc/codewalk/sharemem/][使用通訊共享記憶體]]
 的原始碼之旅。
 
 想要開始編寫Web應用，請參閱
 [[http://vimeo.com/53221558][一個簡單的編程環境]]
-([[http://talks.golang.org/2012/simple.slide][幻燈片]])
+([[http://talks.golang.org/2012/simple.slide][投影片]])
 並且閱讀
 [[http://golang.org/doc/articles/wiki/][編寫Web應用]]的指南.
 
